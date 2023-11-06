@@ -3,18 +3,18 @@ import { Text, View, StyleSheet, Alert } from 'react-native';
 import { stylesClock } from './stylesClock';
 import { formatTime } from '../controller/temporisator';
 
-function Clock({ onCountdownComplete }) {
+function Clock({ onCountdownComplete, scannedText }) {
     const [countdown, setCountdown] = useState(12);
     const [isRequestSent, setIsRequestSent] = useState(false);
     let timer;
 
     const requestApi = () => {
-        fetch('http://172.16.0.219:3000/enviar', {
+        fetch('https://send-message-production.up.railway.app/enviar', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ token: 'fmYEJXf0Tmysyy4xYTj2Jf:APA91bGEXnQYcpQzNRzziyv3xncyaAL3ivp2vSIXpvKlswSiDsutoHWvzvtPGIay6R0QfV11gx2y0eI2Rt_FezTHu11BTAUjuNocDVjJ9YlTvLTb_s10CNgO-LbsTO_0EDglFBc3rbuh', mensaje: "hola" })
+            body: JSON.stringify({coleccion: scannedText })
         })
             .then(response => {
                 if (response.ok) {

@@ -12,6 +12,8 @@ import { stylesCamera } from './styleScann.js';
 function Scanner() {
     const [text, setText] = useState('Escanea un código');
     const [scanned, setScanned] = useState(false);
+    const [scannedText, setScannedText] = useState(null);
+
 
     useEffect(() => {
         (async () => {
@@ -22,12 +24,16 @@ function Scanner() {
     const handleBarCodeScanned = ({ data }) => {
         setScanned(true);
         setText(`Código escaneado: ${data}`);
+        setScannedText(data);
     };
 
     return (
         <View style={stylesCamera.barcodeBox}>
             {scanned ? (
-                <Clock onCountdownComplete={() => setScanned(false)} />
+                <Clock
+                onCountdownComplete={() => setScanned(false)}
+                scannedText={scannedText}
+              />
             ) : (
                 <BarCodeScanner
                     onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}

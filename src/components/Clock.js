@@ -4,7 +4,7 @@ import { stylesClock } from './stylesClock';
 import { formatTime } from '../controller/temporisator';
 
 function Clock({ onCountdownComplete, scannedText }) {
-    const [countdown, setCountdown] = useState(12);
+    const [countdown, setCountdown] = useState(900);
     const [isRequestSent, setIsRequestSent] = useState(false);
     let timer;
 
@@ -63,6 +63,7 @@ function Clock({ onCountdownComplete, scannedText }) {
     return (
         <View style={stylesClock.clockContainer}>
             <Text style={stylesClock.digitalClock}>{formatTime(countdown)}</Text>
+            <Text style={stylesClock.textC}>Los alumnos deberan de llegar en este tiempo </Text>
         </View>
     );
 }
